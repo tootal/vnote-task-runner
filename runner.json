@@ -1,0 +1,65 @@
+{
+    "version": "0.1.4",
+    "label": {
+        "en_US": "Code Runner",
+        "zh_CN": "运行代码"
+    },
+    "icon": "run.svg",
+    "options": {
+        "cwd": "${fileDirname}"
+    },
+    "tasks": [
+        {
+            "label": "C",
+            "tasks": [
+                {
+                    "label": {
+                        "en_US": "Compile & Run",
+                        "zh_CN": "编译 & 运行"
+                    },
+                    "type": "shell",
+                    "command": "(gcc \"${file}\" -o \"${fileBasenameNoExtension}\") -and (\"${fileBasenameNoExtension}\")"
+                },
+                {
+                    "label": {
+                        "en_US": "Compile & Run (in new window)",
+                        "zh_CN": "编译 & 运行（在新窗口中）"
+                    },
+                    "type": "shell",
+                    "command": "(gcc \"${file}\" -o \"${fileBasenameNoExtension}\") -and (start cmd \"/c `\"${fileBasenameNoExtension}`\" & pause\")"
+                }
+            ]
+        },
+        {
+            "label": "C++",
+            "tasks": [
+                {
+                    "label": {
+                        "en_US": "Compile & Run",
+                        "zh_CN": "编译 & 运行"
+                    },
+                    "type": "shell",
+                    "command": "g++ \"${file}\" -o \"${fileBasenameNoExtension}\" ; if ($?) { .\\\"${fileBasenameNoExtension}\" }"
+                },
+                {
+                    "label": {
+                        "en_US": "Compile & Run (in new window)",
+                        "zh_CN": "编译 & 运行（在新窗口中）"
+                    },
+                    "type": "shell",
+                    "command": "(g++ \"${file}\" -o \"${fileBasenameNoExtension}\") -and (start cmd \"/c `\"${fileBasenameNoExtension}`\" & pause\")"
+                }
+            ]
+        },
+        {
+            "label": {
+                "en_US": "Update Task",
+                "zh_CN": "更新任务"
+            },
+            "command": "git pull",
+            "options": {
+                "cwd": "${taskDirname}"
+            }
+        }
+    ]
+}
